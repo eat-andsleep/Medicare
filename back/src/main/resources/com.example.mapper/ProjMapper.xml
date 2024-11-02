@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.example.mapper.ProjMapper" >
+
+        <select id="list" resultType="com.example.pojo.Proj">
+            select * from t_medical_insititution
+            <where>
+                <if test="diaId != null and diaId != ''">
+                    dia_id like concat('%',#{diaId},'%')
+                </if>
+                <if test="diaName !=null and diaName != ''">
+                    and dia_name like concat('%',#{diaName},'%')
+                </if>
+            </where>
+        </select>
+
+        <update id="update">
+            update t_medical_insititution
+            <set>
+                <if test="diaName != null and diaName !=''">
+                    dia_name =#{diaName},
+                </if>
+                <if test="diaExpType != null and diaExpType !=''">
+                    dia_exp_type =#{diaExpType},
+                </if>
+                <if test="diaExpLevel != null and diaExpLevel !=''">
+                    dia_exp_level =#{diaExpLevel},
+                </if>
+                <if test="diaMaxPrize != null and diaMaxPrize !=''">
+                    dia_max_prize =#{diaMaxPrize},
+                </if>
+                <if test="diaHosLevel != null and diaHosLevel !=''">
+                    dia_hos_level =#{diaHosLevel},
+                </if>
+                <if test="diaApprovalmark != null and diaApprovalmark !=''">
+                    dia_approvalmark =#{diaApprovalmark},
+                </if>
+                <if test="diaStarttime != null and diaStarttime !=''">
+                    dia_starttime =#{diaStarttime},
+                </if>
+                <if test="diaEndtime != null and diaEndtime !=''">
+                    dia_endtime =#{diaEndtime},
+                </if>
+                <if test="diaValid != null and diaValid !=''">
+                    dia_valid =#{diaValid},
+                </if>
+                <if test="diaId != null and diaId !=''">
+                    dia_id =#{diaId}
+                </if>
+            </set>
+        <where>
+             dia_id=#{diaId}
+        </where>
+        </update>
+    </mapper>
